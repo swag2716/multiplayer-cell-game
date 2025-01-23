@@ -26,12 +26,11 @@ func main() {
 
 		Connect(conn)
 
-		var msg models.Connect
-
 		_, p, err := conn.ReadMessage()
 		if err != nil {
 			log.Fatal("error in reading message from client: ", err)
 		}
+		var msg models.Connect
 
 		err = json.Unmarshal(p, &msg) //converts []byte to interface
 		if err != nil {
