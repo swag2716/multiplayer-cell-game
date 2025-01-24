@@ -5,6 +5,7 @@ import "github.com/gorilla/websocket"
 type Client struct {
 	ClientID   string          `json:"clientID"`
 	Connection *websocket.Conn `json:"connection"`
+	Color      string          `json:"color"`
 }
 
 type Request struct {
@@ -23,6 +24,20 @@ type Create struct {
 }
 
 type Game struct {
-	GameId string `json:"gameID"`
-	Balls  int    `json:"balls"`
+	GameID  string   `json:"gameID"`
+	Balls   int      `json:"balls"`
+	Clients []Client `json:"clients"`
+	State   []string `json:"state"`
+}
+
+type Play struct {
+	GameID   string `json:"gameID"`
+	BallId   int    `json:"ballId"`
+	ClientID string `json:"clientID"`
+	Color    string `json:"color"`
+}
+
+type Join struct {
+	ClientID string `json:"clientID"`
+	GameID   string `json:"gameID"`
 }
